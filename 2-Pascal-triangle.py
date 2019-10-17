@@ -1,15 +1,15 @@
-def pascal_triangle(row_number, prefix=[1]):
+def pascal_triangle(row_number):
     '''Визначити числа в заданому рядку трикутника Паскаля задопомогою рекурсії'''
-    if row_number == 1:
-        print(prefix)
+    if row_number==1:
+        return ([1])
+    elif row_number==2:
+        return ([1, 2, 1])
     else:
-        new_prefix = [1]
-        if len(prefix) == 1:
-            prefix.append(1)
-        for x in range(len(prefix)-1):
-            new_prefix.append(prefix[x]+prefix[x+1])
-        new_prefix.append(1)
-        pascal_triangle(row_number-1, prefix=new_prefix)
+        row=[1]
+        for x in range(row_number-1):
+            row.append(pascal_triangle(row_number-1)[x] + pascal_triangle(row_number-1)[x+1])
+        row.append(1)
+        return (row)
 
 
-pascal_triangle(6)
+print(pascal_triangle(4))
